@@ -23,6 +23,13 @@
         <activity android:name=".FirstActivity" >
 
         </activity>
+
+
+
+    <activity android:name=".CreateAccountActivity"
+        android:windowSoftInputMode="adjustPan">
+
+    </activity>
     </application>
 
 </manifest>
