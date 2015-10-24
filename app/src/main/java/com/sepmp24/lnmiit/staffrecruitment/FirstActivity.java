@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Nikunj on 22-10-2015.
  */
 public class FirstActivity extends AppCompatActivity {
-
+    //this activity is the first activity of the app
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
