@@ -17,7 +17,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         //setting content view of splash screen
 
 
-        //requesting full screen
+
 
 
         setContentView(R.layout.activity_splash_screen);
