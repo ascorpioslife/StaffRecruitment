@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vacancy"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:layout_alignParentTop="true"
+                android:textSize="15sp"
+                android:text="Post : "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/titledb"
+                android:layout_toRightOf="@+id/title"
+                android:layout_alignParentTop="true"
+                android:textSize="15sp"
+                android:text="System Administrator"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seats"
+                android:textSize="15sp"
+                android:layout_below="@+id/title"
+                android:text="No of Seats : "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/seats"
+                android:id="@+id/seatsdb"
+                android:textSize="15sp"
+                android:layout_below="@+id/title"
+                android:text="2"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/deadline"
+                android:textSize="15sp"
+                android:layout_below="@+id/seatsdb"
+                android:text="Deadline : "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/deadlinedb"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/deadline"
+                android:layout_below="@+id/seats"
+                android:text="12/12/2015"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -1,11 +1,13 @@
 package com.sepmp24.lnmiit.staffrecruitment;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -14,7 +16,15 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+import com.loopj.android.http.*;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+
 
 /**
  * Created by Nikunj on 24-10-2015.
@@ -26,14 +36,17 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText etemail;
     private EditText etmobileNo;
     private EditText etfatherName;
-    private EditText etpostalAddress;
     private EditText etdob;
     private EditText etpassword;
     private EditText etconfPassword;
+    ProgressDialog prgDialog;
     Calendar myCalendar = Calendar.getInstance();
 
     //creating variables for widgets
-    private String name,email,mobileNo,fatherName,postalAddress,dob,password,confPassword;
+    private String name,email,mobileNo,fatherName,dob,password,confPassword;
+    private int resultCode;
+    private String message,resultMsg;
+    int ageError=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,16 +66,23 @@ public class CreateAccountActivity extends AppCompatActivity {
                     Snackbar.make(v.getRootView(), "Please Fill Valid Mobile No.", Snackbar.LENGTH_SHORT).show();
                 else if (!password.equals(confPassword))
                     Snackbar.make(v.getRootView(), "Password does not match", Snackbar.LENGTH_SHORT).show();
+                else if(ageError==-1)
+                    Snackbar.make(v.getRootView(), "Invalid Date", Snackbar.LENGTH_LONG).show();
+                else if(ageError==1)
+                    Snackbar.make(v.getRootView(), "Your Age should be at least 21", Snackbar.LENGTH_LONG).show();
+
 
                 else {
-                    Toast.makeText(CreateAccountActivity.this, "Everything is OK |200", Toast.LENGTH_SHORT).show();
                     //now send request to server
+                    createAccount();
+
                 }
+
             }
         });
 
 
-        etdob.setOnClickListener(new View.OnClickListener(){
+        etdob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -76,6 +96,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
 
                 if (etname.getText().toString().length() <= 0)
                     etname.setError("Enter First Name");
@@ -92,6 +113,8 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             }
         });
+
+
         etemail.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -132,6 +155,55 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             }
         });
+
+        etdob.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+                Date today = new Date();
+                String todayString = df.format(today);
+
+                try {
+                    today = df.parse(todayString);
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                Date userDate=null;
+                try {
+                    userDate  = df.parse(etdob.getText().toString());
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                System.out.println(todayString);
+                System.out.println(etdob.getText().toString());
+                if(getDiffYears(userDate,today)<0)
+                    ageError=-1;
+                else if(getDiffYears(userDate,today)<21)
+                {   System.out.println(getDiffYears(userDate,today));
+                   ageError = 1;
+                    etdob.setError("Invalid Date");
+                }
+
+            }
+        });
         etfatherName.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -150,28 +222,11 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-            }
-        });
-        etpostalAddress.addTextChangedListener(new TextWatcher() {
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                if (etpostalAddress.getText().toString().length() <= 0)
-                    etpostalAddress.setError("Enter Postal Address");
-                else
-                    etpostalAddress.setError(null);
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
 
             }
         });
+
 
         etpassword.addTextChangedListener(new TextWatcher() {
 
@@ -219,6 +274,27 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
 
+
+
+    public static int getDiffYears(Date first, Date last) {
+        Calendar a = getCalendar(first);
+        Calendar b = getCalendar(last);
+        int diff = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
+        if (a.get(Calendar.MONTH) > b.get(Calendar.MONTH) ||
+                (a.get(Calendar.MONTH) == b.get(Calendar.MONTH) && a.get(Calendar.DATE) > b.get(Calendar.DATE))) {
+            diff--;
+        }
+        return diff;
+    }
+
+    public static Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.setTime(date);
+        return cal;
+    }
+
+
+
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -237,7 +313,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private void updateLabel() {
 
-        String myFormat = "dd/MM/yy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         etdob.setText(sdf.format(myCalendar.getTime()));
@@ -250,7 +326,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         etemail = (EditText) findViewById(R.id.et_create_account_email);
         etmobileNo = (EditText)findViewById(R.id.et_create_account_mobile);
         etfatherName = (EditText)findViewById(R.id.et_create_account_father);
-        etpostalAddress = (EditText)findViewById(R.id.et_create_account_postaddress);
         etdob = (EditText)findViewById(R.id.et_create_account_dob);
         etpassword = (EditText)findViewById(R.id.et_create_account_pwd);
         etconfPassword = (EditText)findViewById(R.id.et_create_account_conf_pwd);
@@ -262,7 +337,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         email = etemail.getText().toString();
         mobileNo = etmobileNo.getText().toString();
         fatherName = etfatherName.getText().toString();
-        postalAddress = etpostalAddress.getText().toString();
         password = etpassword.getText().toString();
         confPassword = etconfPassword.getText().toString();
         dob = etdob.getText().toString();
@@ -270,9 +344,67 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
     public boolean anyOneEmpty()
     {
-        if(name.isEmpty()| email.isEmpty()|mobileNo.isEmpty()|fatherName.isEmpty()|postalAddress.isEmpty()|password.isEmpty()|confPassword.isEmpty())
+        if(name.isEmpty()| email.isEmpty()|mobileNo.isEmpty()|fatherName.isEmpty()|password.isEmpty()|confPassword.isEmpty())
             return true;
         else
             return false;
+    }
+
+    public void createAccount()
+    {
+
+        prgDialog = new ProgressDialog(this);
+        prgDialog.setMessage("Creating account Please wait...");
+        prgDialog.setCancelable(false);
+        prgDialog.show();
+        String url = "http://172.22.47.97/sepmp24/createaccount.php";
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("name", name);
+        params.put("email", email);
+        params.put("mobile",mobileNo);
+        params.put("fathername",fatherName);
+        params.put("password", password);
+        params.put("dob", dob);
+
+        client.post(url, params, new JsonHttpResponseHandler() {
+
+
+            @Override
+            public void onStart() {
+                // called before request is started
+                Log.d("CreateAccountRequest", "Starting");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+                // Handle resulting parsed JSON response here
+                //System.out.println(response.toString());
+                try {
+                    resultCode = response.getInt("success");
+                    resultMsg = response.getString("message");
+                } catch (JSONException ex) {
+                    Snackbar.make(findViewById(android.R.id.content), "Something went wrong", Snackbar.LENGTH_SHORT).show();
+                } finally {
+                    if (resultCode == 1)
+                        Snackbar.make(findViewById(android.R.id.content),resultMsg, Snackbar.LENGTH_SHORT).show();
+                    else
+                        Snackbar.make(findViewById(android.R.id.content), resultMsg, Snackbar.LENGTH_SHORT).show();
+                    prgDialog.dismiss();
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                Snackbar.make(findViewById(android.R.id.content), "Something went wrong", Snackbar.LENGTH_SHORT).show();
+                prgDialog.dismiss();
+            }
+        });
+        return;
     }
 }
