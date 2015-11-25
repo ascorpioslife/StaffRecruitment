@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Application Status"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:layout_marginTop="14dp"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/nt_app_status"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, "
+        android:layout_marginLeft="20dp"
+        android:textSize="23sp"
+        android:layout_below="@+id/nt_app_status"
+        android:layout_marginTop="20dp"
+        android:id="@+id/hello"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="John Smith"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/hello"
+        android:layout_below="@+id/nt_app_status"
+        android:id="@+id/name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vacancy Id :"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/hello"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/nt_vac_id"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/nt_vac_id"
+        android:layout_below="@+id/hello"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/vacancy_id"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Application Id :"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/nt_vac_id"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/nt_app_id"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/nt_app_id"
+        android:layout_below="@+id/nt_vac_id"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/app_id"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status :"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/nt_app_id"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/nt_status1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="APPLIED"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/nt_status1"
+        android:layout_below="@+id/nt_app_id"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/status1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message :"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/nt_status1"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/nt_message"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You will be notified as soon as we process all the applications.Thank you for applying !"
+        android:textSize="23sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/nt_message"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/message"
+        />
+
+
+
+
+</RelativeLayout>

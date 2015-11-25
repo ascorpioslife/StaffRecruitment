@@ -2,6 +2,8 @@ package com.sepmp24.lnmiit.staffrecruitment;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,9 +43,11 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText etconfPassword;
     ProgressDialog prgDialog;
     Calendar myCalendar = Calendar.getInstance();
-
+    SharedPreferences splogin;
+    String cand_id;
     //creating variables for widgets
     private String name,email,mobileNo,fatherName,dob,password,confPassword;
+    private static final String TAG_CANDIDATE_ID = "cand_id";
     private int resultCode;
     private String message,resultMsg;
     int ageError=0;
@@ -366,6 +370,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         params.put("fathername",fatherName);
         params.put("password", password);
         params.put("dob", dob);
+        System.out.println(dob);
 
         client.post(url, params, new JsonHttpResponseHandler() {
 
@@ -384,16 +389,24 @@ public class CreateAccountActivity extends AppCompatActivity {
                 try {
                     resultCode = response.getInt("success");
                     resultMsg = response.getString("message");
+                    cand_id = response.getString(TAG_CANDIDATE_ID);
                 } catch (JSONException ex) {
                     Snackbar.make(findViewById(android.R.id.content), "Something went wrong", Snackbar.LENGTH_SHORT).show();
                 } finally {
-                    if (resultCode == 1)
-                        Snackbar.make(findViewById(android.R.id.content),resultMsg, Snackbar.LENGTH_SHORT).show();
-                    else
+                    if (resultCode == 1) {
+                        Snackbar.make(findViewById(android.R.id.content), resultMsg, Snackbar.LENGTH_SHORT).show();
+                        splogin = getSharedPreferences("login",0);
+                        SharedPreferences.Editor edit = splogin.edit();
+                        edit.putString(TAG_CANDIDATE_ID, cand_id);
+                        edit.commit();
+                        Intent intent = new Intent(CreateAccountActivity.this, AllVacancies.class);
+                        startActivity(intent);
+                        finish();
+
+                    } else
                         Snackbar.make(findViewById(android.R.id.content), resultMsg, Snackbar.LENGTH_SHORT).show();
                     prgDialog.dismiss();
                 }
-
 
 
             }

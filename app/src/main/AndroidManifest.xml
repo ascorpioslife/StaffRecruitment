@@ -37,6 +37,21 @@
         <activity android:name=".AllVacancies">
         </activity>
 
+        <activity android:name=".ApplyForVacancyActivity" >
+
+        </activity>
+
+        <activity android:name=".ApplicationFormActivity" >
+
+        </activity>
+
+        <activity android:name=".CheckStatus" >
+
+        </activity>
+
+
     </application>
+
+
 
 </manifest>

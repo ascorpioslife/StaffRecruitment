@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/b_apply">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+
+        >
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gp0"
+            >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POST TITLE"
+        android:textSize="35sp"
+        android:id="@+id/p_title"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+
+        android:textColor="@color/colorAccent"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gp1"
+        android:layout_below="@+id/gp0"
+        android:background="@drawable/back"
+        android:layout_marginTop="15dp"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Department: "
+            android:textSize="15sp"
+            android:id="@+id/nt_dep"
+            android:textColor="@color/colorAccent"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CSE DEPT"
+            android:textSize="15sp"
+            android:layout_toRightOf="@+id/nt_dep"
+            android:id="@+id/dep"
+            />
+    </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gp2"
+            android:layout_below="@+id/gp1"
+            android:background="@drawable/back"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Activation Date: "
+                android:textSize="15sp"
+                android:id="@+id/nt_act_date"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11/12/2015"
+                android:textSize="15sp"
+                android:id="@+id/act_date"
+                android:layout_toRightOf="@+id/nt_act_date"
+                />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gp3"
+            android:layout_below="@+id/gp2"
+            android:background="@drawable/back"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Application Deadline: "
+                android:textSize="15sp"
+
+                android:id="@+id/nt_app_deadline"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11/12/2015"
+                android:textSize="15sp"
+
+                android:id="@+id/app_deadline"
+                android:layout_below="@+id/nt_app_deadline"
+                />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gp4"
+            android:layout_below="@+id/gp3"
+            android:background="@drawable/back"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="No of Seats: "
+                android:textSize="15sp"
+                android:id="@+id/nt_no_seats"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textSize="15sp"
+                android:id="@+id/no_of_seats"
+                android:layout_toRightOf="@+id/nt_no_seats"
+                />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gp5"
+            android:layout_below="@+id/gp4"
+            android:background="@drawable/back"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Status: "
+                android:textSize="15sp"
+                android:id="@+id/nt_status"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ACTIVE"
+                android:textSize="15sp"
+                android:id="@+id/status"
+                android:layout_toRightOf="@+id/nt_status"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gp6"
+            android:layout_below="@+id/gp5"
+            android:background="@drawable/back"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Description: "
+                android:textSize="15sp"
+                android:id="@+id/nt_des"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sd.msdfkmdddddddnnlnflsnflsnflsnnnnnnnnnnnnnnnnnnnllllllllllllllllllllllllllllllllllllllllllll"
+                android:textSize="15sp"
+                android:layout_below="@+id/nt_des"
+                android:id="@+id/des"
+
+                />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+    </ScrollView>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/b_apply"
+        android:layout_width="fill_parent"
+        android:layout_height="65dp"
+        android:text="Apply Now"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/custombutton"
+        android:textSize="15sp"
+        android:textColor="@color/white1"
+
+        />
+
+
+</RelativeLayout>

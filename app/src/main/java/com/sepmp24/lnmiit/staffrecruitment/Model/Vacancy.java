@@ -33,9 +33,9 @@ public class Vacancy {
     {
        return this.status;
     }
-    public void DisplayVacancy()
+    public String DisplayVacancy()
     {
-
+        return this.toString();
     }
 
     public void DeActivateVacancy()

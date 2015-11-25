@@ -3,6 +3,7 @@ package com.sepmp24.lnmiit.staffrecruitment;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +36,10 @@ public class FirstActivity extends AppCompatActivity {
     ProgressDialog prgDialog;
     private int resultCode=0;
     private String resultMsg;
-
+    SharedPreferences splogin;
+    String cand_id,cand_name;
+    private static final String TAG_CANDIDATE_ID = "cand_id";
+    private static final String TAG_CANDIDATE_NAME = "cand_name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +109,8 @@ public class FirstActivity extends AppCompatActivity {
                 try {
                     resultCode = response.getInt("success");
                     resultMsg = response.getString("message");
+                    cand_id = response.getString(TAG_CANDIDATE_ID);
+                    cand_name = response.getString(TAG_CANDIDATE_NAME);
 
                 } catch (JSONException ex) {
                     Snackbar.make(findViewById(android.R.id.content), "Something went wrong", Snackbar.LENGTH_SHORT).show();
@@ -115,6 +121,11 @@ public class FirstActivity extends AppCompatActivity {
                     if(resultCode==1)
                     {
                         //login successful
+                        splogin = getSharedPreferences("login",0);
+                        SharedPreferences.Editor edit = splogin.edit();
+                        edit.putString(TAG_CANDIDATE_ID, cand_id);
+                        edit.putString(TAG_CANDIDATE_NAME,cand_name);
+                        edit.commit();
                         Intent intent = new Intent(FirstActivity.this, AllVacancies.class);
                         startActivity(intent);
                         finish();

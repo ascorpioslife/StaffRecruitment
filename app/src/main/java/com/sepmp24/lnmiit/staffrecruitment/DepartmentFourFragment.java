@@ -1,6 +1,7 @@
 package com.sepmp24.lnmiit.staffrecruitment;
 
 
+import android.content.Intent;
 import  android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -46,6 +49,7 @@ public class DepartmentFourFragment extends ListFragment implements SwipeRefresh
     private static final String TAG_VACANCY_DEADLINE = "vacancy_deadline";
     private static final String TAG_VACANCY_SEATS = "vacancy_seats";
     private static final String TAG_VACANCY_STATUS = "vacancy_status";
+    private static final String TAG_VACANCY_DES = "vacancy_des";
     private static final String TAG_POSTS = "posts";
     private static final String TAG_CANDIDATE_ID = "cand_id";
     private JSONArray mVacancies = null;
@@ -130,7 +134,7 @@ public class DepartmentFourFragment extends ListFragment implements SwipeRefresh
                         map.put(TAG_VACANCY_DEADLINE, j.getString(TAG_VACANCY_DEADLINE));
                         map.put(TAG_VACANCY_SEATS, j.getString(TAG_VACANCY_SEATS));
                         map.put(TAG_VACANCY_STATUS, j.getString(TAG_VACANCY_STATUS));
-
+                        map.put(TAG_VACANCY_DES, j.getString(TAG_VACANCY_DES));
                         //adding this vacancy to List
                         mVacanciesList.add(map);
 
@@ -185,5 +189,23 @@ public class DepartmentFourFragment extends ListFragment implements SwipeRefresh
         if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
         }
+
+        ListView lv = getListView();
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity().getBaseContext(), ApplyForVacancyActivity.class);
+                HashMap<String, String> item = mVacanciesList.get(position);
+                intent.putExtra(TAG_VACANCY_ID, item.get(TAG_VACANCY_ID).toString());
+                intent.putExtra(TAG_VACANCY_TITLE, item.get(TAG_VACANCY_TITLE).toString());
+                intent.putExtra(TAG_VACANCY_DEP_NO, item.get(TAG_VACANCY_DEP_NO).toString());
+                intent.putExtra(TAG_VACANCY_ACT_DATE, item.get(TAG_VACANCY_ACT_DATE).toString());
+                intent.putExtra(TAG_VACANCY_DEADLINE, item.get(TAG_VACANCY_DEADLINE).toString());
+                intent.putExtra(TAG_VACANCY_SEATS, item.get(TAG_VACANCY_SEATS).toString());
+                intent.putExtra(TAG_VACANCY_STATUS, item.get(TAG_VACANCY_STATUS).toString());
+                intent.putExtra(TAG_VACANCY_DES, item.get(TAG_VACANCY_DES).toString());
+                getActivity().startActivity(intent);
+            }
+        });
     }
 }
