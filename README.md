@@ -6,10 +6,10 @@ Group no : 24
 Prof Narsi Bolloju narsi.bolloju@gmail.com
 
 #Group Members : 
-Nikunj Jain <nikunjj46@gmail.com>
-Nilisha Soni <autofreak.nilisha@gmail.com>
-Nishant Gupta <nishant.gupta95@gmail.com>
-Nikita Jalodia <nikita.jalodia.007@gmail.com>
+Nikunj Jain <nikunjj46@gmail.com><br>
+Nilisha Soni <autofreak.nilisha@gmail.com><br>
+Nishant Gupta <nishant.gupta95@gmail.com><br>
+Nikita Jalodia <nikita.jalodia.007@gmail.com><br>
 
 #Key Idea :
 
