@@ -13,8 +13,11 @@ Nikita Jalodia <nikita.jalodia.007@gmail.com><br>
 
 #Key Idea :
 
-Automate the process of Staff Recruitment in LNMIIT.
-Developing an Android app ,applying All Professional Software Engineering Concepts while development.
-Using latest Android Design techniques.
+Automated the process of Staff Recruitment in LNMIIT.
+Developed an Android app ,applied All Professional Software Engineering and Project Management Concepts while development.
+Used latest Android Design techniques.
+
+#Final Report:
+https://drive.google.com/file/d/0B3YC03kHxOKbTm45b1R6NzJrclNxZ09PSTVyTzk1RWNGN3hF/view?usp=sharing
 
 
