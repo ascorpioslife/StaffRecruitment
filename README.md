@@ -20,4 +20,7 @@ Used latest Android Design techniques.
 #Final Report:
 https://drive.google.com/file/d/0B3YC03kHxOKbTm45b1R6NzJrclNxZ09PSTVyTzk1RWNGN3hF/view?usp=sharing
 
+#Final Presentation :
+https://docs.google.com/presentation/d/1wTHiHA4wU9AjzOPH1mv4ryX1EutM1QaXIFdYQ1p16YE/edit?usp=sharing
+
 
